@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	double widthScale = 1;
+	double widthScale = 1.2;
   double heightScale = 1;
 
   int x = 0;
@@ -10,6 +10,9 @@ public class Sketch extends PApplet {
 
   int rotateVar = 0;
   int rotationT = 0;
+
+  double scaleWidthRatio = (400*widthScale)/9;
+  double scaleHeightRatio = (400*heightScale)/9;
   
   boolean stopRotate = false;
   /**
@@ -32,22 +35,24 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-	  //stroke(0);
-    //line (0, 400, 800, 400);
+	  stroke(0);
+    line (0, (int)(400*heightScale), (int)(800*widthScale), (int)(400*heightScale));
     
-	  //stroke(0);
-    //line ((int)(400*widthScale), 0, (int)(400*widthScale), (int)(800*heightScale));
+	  stroke(0);
+    line ((int)(400*widthScale), 0, (int)(400*widthScale), (int)(800*heightScale));
 
     // first quadrant
-    for (x = 45; x < 400*widthScale; x += 45*widthScale){
+    for (x = (int)(45*widthScale); ceil(x) < 400*widthScale; x += scaleWidthRatio){
       stroke(0);
-      line((int)(x*widthScale), (int)(0*heightScale), (int)(x*widthScale), (int)(400*heightScale));
+      line(x, (float)(0*heightScale), x, (float)(400*heightScale));
+    }
+    for (x = (int)(45*heightScale); ceil(x) < 400*heightScale; x += scaleHeightRatio){
       stroke(0);
-      line((int)(0*widthScale), (int)(x*heightScale), (int)(400*widthScale), (int)(x*heightScale));
+      line((float)(0*widthScale), x, (int)(400*widthScale), x);
     }
     // second quadrant
     for (circleLoopY = 66; circleLoopY < 400*heightScale; circleLoopY += 67*heightScale){
-      for (circleLoopX = (int) (466*widthScale); circleLoopX < 800*widthScale; circleLoopX += 67*widthScale){
+      for (circleLoopX = (int)(466*widthScale); circleLoopX < 800*widthScale; circleLoopX += 67*widthScale){
         stroke(0);
         fill(100, 100, 100);
         ellipse(circleLoopX, circleLoopY, 25, 25);
@@ -55,7 +60,7 @@ public class Sketch extends PApplet {
     }
     // third quadrant
     for (x = 0; x < 400*widthScale; x += 1*widthScale){
-      stroke((int)((x*0.6375)*widthScale));
+      stroke(ceil((float)(((x/widthScale)*(0.6375*widthScale)))));
       line((int)(x*widthScale), (int)(400*heightScale), (int)(x*widthScale), (int)(800*heightScale));
     }
     // fourth quadrant
@@ -67,7 +72,7 @@ public class Sketch extends PApplet {
 
     stroke(0);
     fill(200, 0, 10);
-    ellipse(0, 40, 25, 80);
+    ellipse(0, (float)(40*widthScale), 25, 80);
 
     if (stopRotate == false){
       for (rotationT = 0; rotationT < 9; rotateVar += 45, rotationT ++){
@@ -75,9 +80,9 @@ public class Sketch extends PApplet {
 
         stroke(0);
         fill(200, 0, 10);
-        ellipse(0, 40, 25, 80);
+        ellipse(0, (float)(40*widthScale), 25, 80);
         stopRotate = true;
-      
+        
       }
     }
   }

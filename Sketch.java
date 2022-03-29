@@ -2,7 +2,7 @@ import processing.core.PApplet;
 
 public class Sketch extends PApplet {
 	double widthScale = 1.2;
-  double heightScale = 1;
+  double heightScale = 1.2;
 
   int x = 0;
   int circleLoopX = (int) (400*widthScale);
@@ -37,11 +37,11 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-	  stroke(0);
-    line (0, (int)(400*heightScale), (int)(800*widthScale), (int)(400*heightScale));
+//	  stroke(0);
+//    line (0, (int)(400*heightScale), (int)(800*widthScale), (int)(400*heightScale));
     
-	  stroke(0);
-    line ((int)(400*widthScale), 0, (int)(400*widthScale), (int)(800*heightScale));
+//	  stroke(0);
+//    line ((int)(400*widthScale), 0, (int)(400*widthScale), (int)(800*heightScale));
 
     // first quadrant
     for (x = (int)(45*widthScale); ceil(x) < 366*widthScale; x += scaleWidthRatio){
@@ -53,7 +53,7 @@ public class Sketch extends PApplet {
       line((float)(0*widthScale), x, (int)(400*widthScale), x);
     }
     // second quadrant
-    for (circleLoopY = 66; circleLoopY < 400*heightScale; circleLoopY += 67*heightScale){
+    for (circleLoopY = 66; circleLoopY < 344*heightScale; circleLoopY += 67*heightScale){
       for (circleLoopX = (int)(466*widthScale); circleLoopX < 744*widthScale; circleLoopX += 67*widthScale){
         stroke(0);
         fill(100, 100, 100);
@@ -76,24 +76,15 @@ public class Sketch extends PApplet {
     stroke(0);
     fill(200, 0, 10);
     ellipse(0, (float)(40*widthScale), 25, 80);
+    for (rotationT = 0; rotationT < 9; rotateVar += 45, rotationT ++){
+      rotate(radians(rotateVar + 45));
 
-    if (stopRotate == false){
-      for (rotationT = 0; rotationT < 9; rotateVar += 45, rotationT ++){
-        rotate(radians(rotateVar + 45));
-
-        stroke(0);
-        fill(200, 0, 10);
-        ellipse(0, (float)(40*widthScale), 25, 80);
-
-        print(rotationT);
-
-        if (rotationT > 8){
-          stopRotate = true;
-        }
-
-      }
-  
+      stroke(0);
+      fill(200, 0, 10);
+      ellipse(0, (float)(40*widthScale), 25, 80);
     }
+  
+
   }
     // define other methods down here.
 /*    stroke(0);

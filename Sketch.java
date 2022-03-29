@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	double widthScale = 1;
+	double widthScale = 1.2;
   double heightScale = 1;
 
   int x = 0;
@@ -44,11 +44,11 @@ public class Sketch extends PApplet {
     line ((int)(400*widthScale), 0, (int)(400*widthScale), (int)(800*heightScale));
 
     // first quadrant
-    for (x = (int)(45*widthScale); ceil(x) < 400*widthScale; x += scaleWidthRatio){
+    for (x = (int)(45*widthScale); ceil(x) < 366*widthScale; x += scaleWidthRatio){
       stroke(0);
       line(x, (float)(0*heightScale), x, (float)(400*heightScale));
     }
-    for (x = (int)(45*heightScale); ceil(x) < 400*heightScale; x += scaleHeightRatio){
+    for (x = (int)(45*heightScale); ceil(x) < 366*heightScale; x += scaleHeightRatio){
       stroke(0);
       line((float)(0*widthScale), x, (int)(400*widthScale), x);
     }
@@ -62,8 +62,8 @@ public class Sketch extends PApplet {
     }
     // third quadrant
     for (xGradiant = 0; xGradiant < 400*widthScale; xGradiant += 1*widthScale){
-      stroke((int)(xGradiant*0.6375));
-      fill((int)(xGradiant*0.6375));
+      stroke((int)((xGradiant*0.6375)/widthScale));
+      fill((int)((xGradiant*0.6375)/widthScale));
       rect((int)(xGradiant), (int)(400*heightScale), (int)(xGradiant*widthScale), (int)(800*heightScale));
     } 
     // fourth quadrant
@@ -84,7 +84,13 @@ public class Sketch extends PApplet {
         stroke(0);
         fill(200, 0, 10);
         ellipse(0, (float)(40*widthScale), 25, 80);
-        stopRotate = true;
+
+        print(rotationT);
+
+        if (rotationT > 8){
+          stopRotate = true;
+        }
+
       }
   
     }
